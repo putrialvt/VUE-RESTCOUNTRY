@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MobilKamu Test</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style type="text/css">
+		.container{
+			padding: 2em 0;
+			left: 50%
+		}
+		.card{
+			margin: 1em 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+	  <div id="app" class="row">
+	    <div class="col-md-12">
+	      <input id="input-search" type="text" class="form-control" v-model="textSearch" placeholder='Search...'>
+	      <div id="list-countries" v-if="countriesFilter && countriesFilter.length">
+	        <div class="card" v-for="country of countriesFilter">
+	          <div class="card-header">
+	            <img v-bind:src="country.flag" alt="" width="30px">
+	            <span>{{country.name}}</span>
+	          </div>
+	          <div class="card-body">
+	            <div class="row">
+	              <div class="col-md-6">Capital: <strong>{{country.capital}}</strong></div>
+	              <div class="col-md-6">Region: <strong>{{country.region}}</strong></div>
+	            </div> 
+	            <div class="row">
+	              <div class="col-md-6">Sub Region: <strong>{{country.subregion}}</strong></div>
+	              <div class="col-md-6">Lat Lng: <strong>{{country.latlng}}</strong></div>
+	            </div> 
+	            <div class="row">
+	              <div class="col-md-6">Area: <strong>{{country.area}}</strong></div>
+	              <div class="col-md-6">Languages: <strong>{{country.languages[0].nativeName}}</strong></div>
+	            </div> 
+	            <div class="row">
+	              <div class="col-md-6">Currency: <strong>{{country.currencies[0].name}} ({{country.currencies[0].symbol}})</strong></div>
+	              <div class="col-md-6">Population: <strong >{{country.population | format-thousands}}</strong></div>
+	            </div> 
+	          </div>
+	        </div>
+	      </div>
+	      <div class="text-center" v-else>
+	        No results!
+	      </div>
+	    </div>
+	  </div>  
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="./main.js"></script>
+</body>
+</html>
